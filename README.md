@@ -172,4 +172,4 @@ Trabajé con Claude Code (en VS Code) como asistente de programación. Yo decid�
 
 ## Tiempo
 
-Implementación medida con reloj: de las 15:09 a las 15:31 del 18/11/2026, unos **25 minutos** de trabajo con la IA escribiendo el código y yo revisando. No cuenta la lectura del enunciado ni la planificación previa, que hice antes de empezar a medir. Cada bloque de ramas quedó muy por debajo del tiempo que había presupuestado, así que prefiero reportar la cifra real antes que ajustarla a las 3 horas.
+Implementación medida con reloj: de las 15:09 a las 15:33 del 18/11/2026, unos **25 minutos** de trabajo con la IA escribiendo el código y yo revisando. No cuenta la lectura del enunciado ni la planificación previa, que hice antes de empezar a medir. Cada bloque de ramas quedó muy por debajo del tiempo que había presupuestado, así que prefiero reportar la cifra real antes que ajustarla a las 3 horas.
