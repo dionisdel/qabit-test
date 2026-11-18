@@ -43,4 +43,12 @@ class TaskReadTest extends TestCase
             ->assertJsonPath('data.assignee', 'Ana')
             ->assertJsonPath('data.due_date', '2026-12-01');
     }
+
+    public function test_missing_task_returns_json_404_even_without_accept_header(): void
+    {
+        $this->get('/api/tasks/999')
+            ->assertNotFound()
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonStructure(['message']);
+    }
 }
