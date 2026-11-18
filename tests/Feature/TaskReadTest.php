@@ -49,6 +49,13 @@ class TaskReadTest extends TestCase
         $this->get('/api/tasks/999')
             ->assertNotFound()
             ->assertHeader('Content-Type', 'application/json')
-            ->assertJsonStructure(['message']);
+            ->assertExactJson(['message' => 'Resource not found.']);
+    }
+
+    public function test_unknown_api_route_returns_json_404(): void
+    {
+        $this->get('/api/nope')
+            ->assertNotFound()
+            ->assertExactJson(['message' => 'Resource not found.']);
     }
 }
