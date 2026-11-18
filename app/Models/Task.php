@@ -10,6 +10,11 @@ class Task extends Model
 {
     use HasFactory;
 
+    // Same default as the migration, so a freshly created model already has it.
+    protected $attributes = [
+        'status' => 'pending',
+    ];
+
     protected $fillable = [
         'title',
         'description',
