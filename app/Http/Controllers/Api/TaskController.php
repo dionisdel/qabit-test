@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\TaskStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\IndexTaskRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class TaskController extends Controller
 {
-    public function index(Request $request): AnonymousResourceCollection
+    public function index(IndexTaskRequest $request): AnonymousResourceCollection
     {
+        $filters = $request->validated();
+
         $tasks = Task::query()
-            ->orderBy('id')
-            ->paginate();
+            ->when(isset($filters['status']), fn ($q) => $q->withStatus(TaskStatus::from($filters['status'])))
+            ->when(isset($filters['assignee']), fn ($q) => $q->assignedTo($filters['assignee']))
+            ->orderedByDeadline()
+            ->paginate($filters['per_page'] ?? IndexTaskRequest::DEFAULT_PER_PAGE)
+            ->withQueryString();
 
         return TaskResource::collection($tasks);
     }
